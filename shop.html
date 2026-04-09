@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vereinsshop - Vereinsname</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Skip to Content Link -->
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    
+    <!-- DHBW Project Banner -->
+    <aside class="dhbw-banner" role="complementary" aria-label="Projekt-Information">
+        Dies ist eine Projektseite der <a href="https://www.dhbw-heidenheim.de/" target="_blank">DHBW Heidenheim</a> - Studiengang Wirtschaftsinformatik
+    </aside>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="Bilder/SvEnteHeidenheimLogo.png" alt="SV Ente Heidenheim Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main">SV Ente</span>
+                    <span class="logo-sub">Heidenheim</span>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="newspage.html">News</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li class="dropdown">
+                        <a href="Sportangebote.html">Sportangebote</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Fußball1.html">Fußball</a></li>
+                            <li><a href="Handball1.html">Handball</a></li>
+                            <li><a href="Basketball1.html">Basketball</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Mitgliedschaft.html">Mitgliedschaft</a></li>
+                    <li><a href="Kontakt.html">Kontakt</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon">
+                🛒
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Shop Header -->
+            <section class="shop-header">
+                <h1>Vereinsshop</h1>
+                <p>Entdecken Sie unsere exklusiven Vereinsartikel, Merchandise und vieles mehr. 
+                   Unterstützen Sie unseren Verein mit jedem Einkauf.</p>
+            </section>
+
+            <!-- Shop Controls -->
+            <div class="shop-controls">
+                <div class="search-box">
+                    <input type="text" placeholder="Artikel suchen..." id="searchInput">
+                    <button type="button">🔍</button>
+                </div>
+                <div class="filter-controls">
+                    <select class="filter-dropdown" id="categoryFilter">
+                        <option value="all">Alle Kategorien</option>
+                        <option value="kleidung">Kleidung</option>
+                        <option value="accessoires">Accessoires</option>
+                        <option value="sport">Sport & Fitness</option>
+                        <option value="buero">Büro & Technik</option>
+                    </select>
+                    <select class="filter-dropdown" id="priceFilter">
+                        <option value="all">Alle Preise</option>
+                        <option value="0-20">0€ - 20€</option>
+                        <option value="20-50">20€ - 50€</option>
+                        <option value="50-100">50€ - 100€</option>
+                        <option value="100+">100€+</option>
+                    </select>
+                    <select class="filter-dropdown" id="sortFilter">
+                        <option value="name">Nach Name</option>
+                        <option value="price-low">Preis: Niedrig zu Hoch</option>
+                        <option value="price-high">Preis: Hoch zu Niedrig</option>
+                        <option value="newest">Neueste zuerst</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <h2 class="visually-hidden">Unsere Produkte</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Kleidung -->
+                <div class="product-card" data-category="kleidung" data-price="35">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsT-shirt.png" alt="Vereins T-Shirt Premium">
+                    </div>
+                    <div class="product-badge new">Neu</div>
+                    <div class="product-info">
+                        <div class="product-category">Kleidung</div>
+                        <h3 class="product-title">Vereins T-Shirt Premium</h3>
+                        <p class="product-description">Super bequemes T-Shirt aus Bio-Baumwolle. Das Logo sitzt perfekt und die Qualität ist echt top!</p>
+                        <div class="product-price">
+                            <span class="price-current">35,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="kleidung" data-price="65">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsJacke.png" alt="Vereinsjacke Softshell">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Kleidung</div>
+                        <h3 class="product-title">Vereinsjacke Softshell</h3>
+                        <p class="product-description">Mega praktisch bei Wind und Wetter. Hab sie schon oft getragen - hält was sie verspricht!</p>
+                        <div class="product-price">
+                            <span class="price-current">65,00 €</span>
+                            <span class="price-old">75,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessoires" data-price="18">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsSchal.png" alt="Fanschal">
+                    </div>
+                    <div class="product-badge sale">Sale</div>
+                    <div class="product-info">
+                        <div class="product-category">Accessoires</div>
+                        <h3 class="product-title">Fanschal</h3>
+                        <p class="product-description">Klassischer Fanschal in Vereinsfarben. Perfekt für kalte Spieltage und zum Anfeuern!</p>
+                        <div class="product-price">
+                            <span class="price-current">18,00 €</span>
+                            <span class="price-old">22,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessoires -->
+                <div class="product-card" data-category="accessoires" data-price="15">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsCap.png" alt="Baseball Cap">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Accessoires</div>
+                        <h3 class="product-title">Baseball Cap</h3>
+                        <p class="product-description">Klassische Cap mit unserem Logo. Sitzt bequem und sieht lässig aus - was will man mehr?</p>
+                        <div class="product-price">
+                            <span class="price-current">15,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessoires" data-price="45">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsRucksack.png" alt="Sportrucksack">
+                    </div>
+                    <div class="product-badge new">Neu</div>
+                    <div class="product-info">
+                        <div class="product-category">Accessoires</div>
+                        <h3 class="product-title">Sportrucksack</h3>
+                        <p class="product-description">Perfekt für Training und Vereinsausflüge. Hat genug Platz und die Träger sind wirklich angenehm.</p>
+                        <div class="product-price">
+                            <span class="price-current">45,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessoires" data-price="38">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsSporttasche.png" alt="Sporttasche">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Accessoires</div>
+                        <h3 class="product-title">Sporttasche</h3>
+                        <p class="product-description">Geräumige Duffel-Bag für Training und Wettkämpfe. Robustes Material und praktische Aufteilung.</p>
+                        <div class="product-price">
+                            <span class="price-current">38,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sport & Fitness -->
+                <div class="product-card" data-category="sport" data-price="12">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsTrinkflasche.png" alt="Trinkflasche">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Sport & Fitness</div>
+                        <h3 class="product-title">Vereins Trinkflasche</h3>
+                        <p class="product-description">BPA-freie Trinkflasche aus Edelstahl. Hält Getränke 12h kalt oder 6h warm.</p>
+                        <div class="product-price">
+                            <span class="price-current">12,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="sport" data-price="20">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsHandtuch.png" alt="Sporthandtuch">
+                    </div>
+                    <div class="product-badge new">Neu</div>
+                    <div class="product-info">
+                        <div class="product-category">Sport & Fitness</div>
+                        <h3 class="product-title">Sporthandtuch</h3>
+                        <p class="product-description">Hochwertiges Mikrofaser-Handtuch mit Vereinslogo. Schnelltrocknend und super saugfähig.</p>
+                        <div class="product-price">
+                            <span class="price-current">20,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>
+                Warenkorb
+                <button class="cart-close">×</button>
+            </h3>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-state">
+                <h3>Ihr Warenkorb ist leer</h3>
+                <p>Fügen Sie Artikel hinzu, um mit dem Einkaufen zu beginnen.</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Gesamt:</span>
+                <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="checkout-btn">Zur Kasse gehen</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>SV Ente Heidenheim<br>
+                       Marienstraße 20<br>
+                       89518 Heidenheim an der Brenz<br>
+                       Tel: +49 123 456789<br>
+                       Email: info@sv-ente.de</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Shop Info</h3>
+                    <p><a href="#">Versandkosten</a><br>
+                       <a href="#">Rückgabe</a><br>
+                       <a href="#">Größentabelle</a><br>
+                       <a href="#">AGB Shop</a><br>
+                       <a href="#">Widerrufsrecht</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Service</h3>
+                    <p><a href="#">FAQ</a><br>
+                       <a href="#">Bestellstatus</a><br>
+                       <a href="#">Kundenservice</a><br>
+                       <a href="#">Newsletter</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 SV Ente Heidenheim. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

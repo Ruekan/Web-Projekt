@@ -12,7 +12,7 @@
     
     <!-- DHBW Project Banner -->
     <aside class="dhbw-banner" role="complementary" aria-label="Projekt-Information">
-         Dies ist eine Projektseite der <a href="https://www.dhbw-heidenheim.de/" target="_blank">DHBW Heidenheim</a> - Studiengang Wirtschaftsinformatik
+        Dies ist eine Projektseite der <a href="https://www.dhbw-heidenheim.de/" target="_blank">DHBW Heidenheim</a> - Studiengang Wirtschaftsinformatik
     </aside>
 
     <!-- Header -->
@@ -27,7 +27,7 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="newspage.html">News</a></li>
                     <li><a href="shop.html">Shop</a></li>
                     <li class="dropdown">
@@ -39,7 +39,7 @@
                         </ul>
                     </li>
                     <li><a href="Mitgliedschaft.html">Mitgliedschaft</a></li>
-                    <li><a href="Kontakt.html">Kontakt</a></li>
+                    <li><a href="Kontakt.html" class="active">Kontakt</a></li>
                 </ul>
             </nav>
         </div>
@@ -47,44 +47,59 @@
 
     <!-- Main Content -->
     <main id="main-content">
-        <!-- Hero Banner with Image -->
-        <section class="hero-banner">
-            <div class="hero-overlay">
-                <div class="hero-content">
-                    <h1>Willkommen beim SV Ente Heidenheim</h1>
-                    <p>Entdecken Sie unsere Gemeinschaft, unsere Werte und unsere Aktivitäten. 
-                       Wir freuen uns darauf, Sie als neues Mitglied begrüßen zu dürfen.</p>
-                    <a href="Mitgliedschaft.html" class="btn btn-hero">Mitglied werden</a>
-                </div>
-            </div>
-        </section>
+        <article class="artikel">
+            <header>
+                <h1>Kontakt</h1>
+                <div class="artikel-meta">So erreichst du uns</div>
+            </header>
+            <section>
+                <h2 class="visually-hidden">Kontaktinformationen</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Vereinsbüro</h3>
+                        <p>SV Ente Heidenheim<br>
+                        Marienstraße 20 <br>
+                        89518 Heidenheim an der Brenz</p>
 
-        <div class="container">
+                        <p><strong>Telefon:</strong> +49 123 456789<br>
+                        <strong>Email:</strong> <a href="mailto:info@sv-ente.de">info@sv-ente.de</a></p>
 
-            <!-- Content Grid -->
-            <div class="content-grid" id="about">
-                <div class="content-card">
-                    <h2>Über unseren Verein</h2>
-                    <p>Erfahren Sie mehr über unsere Geschichte, unsere Mission und die Werte, 
-                       die uns als Gemeinschaft zusammenhalten. Seit vielen Jahren engagieren wir uns 
-                       für unsere Mitglieder und die lokale Gemeinschaft.</p>
+                        <h4>Öffnungszeiten</h4>
+                        <p>Mo - Fr: 09:00 - 16:00<br>
+                        Sa: 10:00 - 13:00</p>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Nachricht senden</h3>
+                        <form action="mailto:info@sv-ente.de" method="post" enctype="text/plain">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+
+                            <label for="message">Nachricht</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+
+                            <button type="submit" class="btn">Absenden</button>
+                        </form>
+
+                        
+                    </div>
                 </div>
 
-                <div class="content-card">
-                    <h2>Kommende Veranstaltungen</h2>
-                    <p>Bleiben Sie auf dem Laufenden über unsere nächsten Events, Treffen und 
-                       besonderen Aktivitäten. Von gesellschaftlichen Zusammenkünften bis hin zu 
-                       Fachvorträgen - hier ist für jeden etwas dabei.</p>
+                <!-- Map  -->
+                <div class="map-wrapper">
+                    <h3>Unser Standort</h3>
+                    <div class="osm-embed">
+                        <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=10.1345%2C48.6721%2C10.1745%2C48.6921&layer=mapnik&marker=48.6821%2C10.1545"
+                            aria-label="OpenStreetMap Karte von Heidenheim an der Brenz">
+                        </iframe>
+                    </div>
                 </div>
-
-                <div class="content-card">
-                    <h2>Mitgliedschaft</h2>
-                    <p>Werden Sie Teil unserer Gemeinschaft und profitieren Sie von exklusiven 
-                       Vorteilen, Networking-Möglichkeiten und der Chance, aktiv an der Gestaltung 
-                       unseres Vereinslebens teilzunehmen.</p>
-                </div>
-            </div>
-        </div>
+            </section>
+        </article>
     </main>
 
     <!-- Footer -->
@@ -123,5 +138,6 @@
             </div>
         </div>
     </footer>
+        <!-- Karte ohne JavaScript: OpenStreetMap-iframe verwendet -->
 </body>
 </html>

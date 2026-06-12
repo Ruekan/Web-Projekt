@@ -1,0 +1,51 @@
+<section class="fee-calculator" aria-labelledby="fee-calculator-title">
+  <div class="fee-calculator__intro">
+    <p>Beitragsrechner</p>
+    <h2 id="fee-calculator-title">Mitgliedsbeitrag berechnen</h2>
+    <span>Wähle eine Mitgliedschaft und eine Sportart aus. Die Berechnung ist unverbindlich und basiert auf den aktuellen Monatsbeiträgen.</span>
+  </div>
+
+  <div class="fee-calculator__panel">
+    <div class="fee-calculator__form" aria-label="Auswahl für Beitragsrechnung">
+      <label for="membership-plan">Mitgliedschaftstyp</label>
+      <select id="membership-plan" [value]="selectedPlanId" (change)="onPlanChanged($event)">
+        @for (plan of membershipPlans; track plan.id) {
+          <option [value]="plan.id">{{ plan.name }} - {{ plan.description }}</option>
+        }
+      </select>
+
+      <label for="membership-sport">Sportart</label>
+      <select id="membership-sport" [value]="selectedSportId" (change)="onSportChanged($event)">
+        <option value="all">Alle Sportangebote</option>
+        @for (sport of sports; track sport.id) {
+          <option [value]="sport.id">{{ sport.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="fee-calculator__result" aria-live="polite">
+      <p>Deine Beispielrechnung</p>
+      <h3>{{ selectedPlanName }}</h3>
+      <span class="fee-calculator__sport">
+        @if (selectedSportName) {
+          Gewählte Sportart: {{ selectedSportName }}
+        } @else {
+          Gilt für alle Sportangebote
+        }
+      </span>
+
+      <div class="fee-calculator__prices">
+        <div>
+          <span>Monatlich</span>
+          <strong>{{ monthlyPriceLabel }}</strong>
+        </div>
+        <div>
+          <span>Jährlich</span>
+          <strong>{{ yearlyPriceLabel }}</strong>
+        </div>
+      </div>
+
+      <small>Mehrere Sportarten sind im Beitrag enthalten. Es fallen hier keine Zusatzkosten an.</small>
+    </div>
+  </div>
+</section>

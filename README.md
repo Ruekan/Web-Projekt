@@ -127,6 +127,13 @@ Das Projekt nutzt Hash-Routing über `withHashLocation()`. Die Routen sind inter
 - Detailseiten werden über den URL-Parameter `sportId` aufgebaut
 - Unbekannte Sportarten zeigen einen Fehlerzustand mit Link zurück zur Übersicht
 
+### Mitgliedschaft
+
+- Beitragsrechner für Mitgliedschaftstyp und Sportart
+- Monats- und Jahresbeitrag werden direkt berechnet
+- Sportart-Auswahl zeigt, dass die Angebote im Beitrag enthalten sind
+- Berechnung läuft vollständig lokal ohne Speicherung oder Backend
+
 ### Zustände
 
 An mehreren Stellen sind Loading-, Empty- und Error-States eingebaut, zum Beispiel im Shop, bei News, im Warenkorb und auf Sportdetailseiten.
@@ -148,6 +155,14 @@ src/
     │   ├── home-page/
     │   ├── kontakt-page/
     │   ├── mitgliedschaft-page/
+    │   │   ├── components/
+    │   │   │   ├── fee-calculator/
+    │   │   │   ├── membership-benefits/
+    │   │   │   ├── membership-cta/
+    │   │   │   ├── membership-faq/
+    │   │   │   ├── membership-registration-form/
+    │   │   │   └── membership-types/
+    │   │   └── data/
     │   ├── news-one-page/
     │   ├── news-page/
     │   │   └── components/news-card/

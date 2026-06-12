@@ -1,145 +1,345 @@
-# SV Ente Heidenheim – Vereinswebsite (Semester 2)
+# SV Ente Heidenheim - Vereinswebsite
 
-Webprojekt für den Studiengang Wirtschaftsinformatik an der DHBW Heidenheim.
-Dynamische Web-Applikation auf Basis von Angular 21 und TypeScript – Weiterentwicklung der statischen HTML/CSS-Version aus Semester 1.
+Angular/TypeScript-Projekt für eine fiktive Vereinswebsite des SV Ente Heidenheim.
+Die Anwendung ist die Weiterentwicklung einer statischen HTML/CSS-Seite aus dem ersten Semester.
 
-## Projektübersicht
+## Kurzüberblick
 
-Für den fiktiven Sportverein **SV Ente Heidenheim** wurde eine vollständig dynamische Webanwendung entwickelt. Gegenüber der statischen Vorgängerversion bietet die Anwendung interaktive Features wie einen funktionierenden Warenkorb, ein News-CMS mit Kommentarfunktion sowie kombinierbare Shop-Filter. Alles ohne externen Server, ausschließlich mit lokalem State und `localStorage`.
+Wichtige Bereiche:
 
-## Setup & Start
+- `News`: Artikelliste, Detailseiten, Kommentare und Redakteursmodus
+- `Shop`: Produktsuche, Filter, Warenkorb und Preisberechnung
+- `Sportangebote`: Übersicht und dynamische Detailseiten je Sportart
+- `Mitgliedschaft` und `Kontakt`: Vereinsinformationen und Formulare
+- `404-Seite`: Fallback für unbekannte URLs
 
-### Voraussetzungen
+## Voraussetzungen
 
-- [Node.js](https://nodejs.org/) (v18 oder neuer)
-- npm (wird mit Node.js mitgeliefert)
+- Node.js, empfohlen: aktuelle gerade LTS-Version
+- npm, wird mit Node.js installiert
 
-### Installation & Start
+## Installation
 
 ```bash
-# Abhängigkeiten installieren
 npm install
+```
 
-# Entwicklungsserver starten (http://localhost:4200)
+Falls PowerShell unter Windows `npm` blockiert, stattdessen `npm.cmd` verwenden:
+
+```bash
+npm.cmd install
+```
+
+## Projekt starten
+
+```bash
 npm start
 ```
 
-### Tests ausführen
+Danach läuft die Anwendung lokal unter:
+
+```text
+http://localhost:4200
+```
+
+## Build und Tests
+
+Produktionsbuild:
 
 ```bash
-# Alle Tests einmalig ausführen
-npm test -- --watch=false
+npm run build
+```
 
-# Tests im Watch-Modus (bei Dateiänderungen neu ausführen)
+Tests einmalig ausführen:
+
+```bash
+npm test -- --watch=false
+```
+
+Tests im Watch-Modus:
+
+```bash
 npm test
 ```
 
-## Features
+Aktuell gibt es kein eigenes `lint`-Script.
 
-### Shop mit Filterung und Warenkorb
-- Live-Suche über Produktname, Beschreibung und Kategorie
-- Kombinierbare Filter: Kategorie, Preisbereich, Größe
-- Filterparameter werden in der URL gespeichert (bookmarkbar)
-- Warenkorb mit Mengensteuerung und Preisberechnung
-- Persistenz via `localStorage` – Warenkorb bleibt nach Reload erhalten
-- Automatische Bereinigung veralteter Warenkorbeinträge bei Produktänderungen
+## Tech Stack
 
-### News-CMS
-- 15 vorbelegte Artikel mit Kategorisierung (9 Tags)
-- Redakteursbereich (PIN-geschützt): Artikel erstellen und löschen
-- Automatische Slug-Generierung mit Kollisionserkennung
-- Sortierung nach Datum oder Titel, Filterung nach Tags
+| Bereich | Technologie |
+|---|---|
+| Framework | Angular 21 mit Standalone Components |
+| Sprache | TypeScript 5.9 im Strict Mode |
+| Routing | Angular Router |
+| Formulare | Angular Forms und Reactive Forms |
+| State | Angular Signals (`signal`, `computed`) |
+| Persistenz | Browser-`localStorage` |
+| Tests | Vitest mit Angular TestBed |
+| Formatierung | Prettier |
+| Paketmanager | npm |
+
+## Routen
+
+Das Projekt nutzt Hash-Routing über `withHashLocation()`. Die Routen sind intern in Angular ohne `#` definiert, im Browser werden sie aber mit `/#/` aufgerufen.
+
+| Angular-Route | Browser-URL | Seite | Zweck |
+|---|---|---|---|
+| `/` | `http://localhost:4200/#/` | Startseite | Einstieg in die Vereinswebsite |
+| `/news` | `http://localhost:4200/#/news` | Newsübersicht | Artikel anzeigen, filtern und sortieren |
+| `/news/neu` | `http://localhost:4200/#/news/neu` | Redakteursmodus | Lokalen Newsartikel erstellen |
+| `/news/:slug` | `http://localhost:4200/#/news/beispiel-artikel` | Newsdetailseite | Einzelartikel und Kommentare |
+| `/shop` | `http://localhost:4200/#/shop` | Shop | Produkte suchen, filtern und in den Warenkorb legen |
+| `/warenkorb` | `http://localhost:4200/#/warenkorb` | Warenkorb | Artikelmengen ändern und Summe berechnen |
+| `/cart` | `http://localhost:4200/#/cart` | Redirect | Leitet auf `/warenkorb` weiter |
+| `/sportangebote` | `http://localhost:4200/#/sportangebote` | Sportübersicht | Alle Sportarten anzeigen |
+| `/sportangebote/:sportId` | `http://localhost:4200/#/sportangebote/fussball` | Sportdetailseite | Details zu einer Sportart |
+| `/mitgliedschaft` | `http://localhost:4200/#/mitgliedschaft` | Mitgliedschaft | Infos und Formular |
+| `/kontakt` | `http://localhost:4200/#/kontakt` | Kontakt | Kontaktdaten, Formular und Karte |
+| `**` | unbekannte Hash-Route | 404-Seite | Fallback für unbekannte URLs |
+
+## Dynamische Funktionen
+
+### Shop
+
+- Produktsuche nach Name, Beschreibung und Kategorie
+- Filter nach Kategorie, Preisbereich und Größe
+- Filterzustand wird in der URL gespeichert
+- Warenkorb mit Mengensteuerung
+- Berechnung von Zwischensummen und Gesamtsumme
+- Warenkorb bleibt über `localStorage` nach einem Reload erhalten
+- Validierung der lokalen Produktdaten im Data Layer
+
+### News
+
+- Artikelliste aus lokalen Standarddaten und `localStorage`
+- Filterung nach Tags
+- Sortierung nach Datum oder Titel
+- Detailseiten über Slugs
 - Kommentarfunktion mit Formularvalidierung
-- Persistenz via `localStorage` inkl. Versionierung
+- Redakteursmodus zum Erstellen und Löschen lokaler Artikel
+- Löschbestätigung vor dem Entfernen eines Artikels
+- Demo-PIN für den Redakteursmodus: `1234`
 
 ### Sportangebote
-- 6 Sportarten (Fußball, Handball, Basketball, Badminton, Tennis, Tischtennis)
-- Dynamische Detailseiten über URL-Parameter (`/sportangebote/:sportId`)
-- Automatische Weiterleitung bei unbekannter Sport-ID
 
-### Weitere Seiten
-- Mitgliedschaft: Informationsseite mit Formular
-- Kontakt: Kontaktinformationen und Formular
-- 404-Seite für unbekannte Routen
+- Sportarten werden aus zentralen lokalen Daten geladen
+- Zugriff läuft über `SportsService`
+- Detailseiten werden über den URL-Parameter `sportId` aufgebaut
+- Unbekannte Sportarten zeigen einen Fehlerzustand mit Link zurück zur Übersicht
+
+### Zustände
+
+An mehreren Stellen sind Loading-, Empty- und Error-States eingebaut, zum Beispiel im Shop, bei News, im Warenkorb und auf Sportdetailseiten.
 
 ## Projektstruktur
 
-```
+```text
 src/
 └── app/
-    ├── data/                    # Statische Vereinsdaten (Sportangebote)
+    ├── data/
+    │   └── sports.data.ts
     ├── layout/
-    │   ├── site-header/         # Globale Navigation mit Dropdown und Cart-Badge
-    │   └── site-footer/         # Globaler Footer
+    │   ├── site-header/
+    │   └── site-footer/
     ├── models/
-    │   └── article.ts           # Interfaces: Article, Comment
+    │   └── article.ts
     ├── pages/
-    │   ├── home-page/           # Startseite
-    │   ├── sportangebote-page/  # Sportarten-Übersicht
-    │   ├── sport-detail-page/   # Dynamische Sportdetailseite
-    │   ├── news-page/           # Newsliste mit Filter und Sortierung
-    │   ├── news-one-page/       # Einzelartikel mit Kommentaren
-    │   ├── news-upload-page/    # Artikelerstellung (PIN-geschützt)
-    │   ├── shop-page/           # Produktliste mit Filterung
+    │   ├── cart-page/
+    │   ├── home-page/
+    │   ├── kontakt-page/
+    │   ├── mitgliedschaft-page/
+    │   ├── news-one-page/
+    │   ├── news-page/
+    │   │   └── components/news-card/
+    │   ├── news-upload-page/
+    │   ├── not-found-page/
+    │   ├── shop-page/
     │   │   ├── components/
-    │   │   │   ├── shop-filter-panel/   # Präsentationskomponente Filter
-    │   │   │   └── shop-product-grid/   # Präsentationskomponente Produkte
+    │   │   │   ├── shop-filter-panel/
+    │   │   │   └── shop-product-grid/
     │   │   └── data/
-    │   │       ├── shop.models.ts       # Typen: ShopProduct, ShopFilterState
-    │   │       ├── shop.data.ts         # Produktdaten
-    │   │       ├── shop.service.ts      # Filterlogik, Validierung
-    │   │       ├── cart.models.ts       # Typen: CartEntry, CartSummary
-    │   │       └── cart.service.ts      # Warenkorb-State, localStorage
-    │   ├── cart-page/           # Warenkorbverwaltung
-    │   ├── mitgliedschaft-page/ # Mitgliedschaftsseite
-    │   ├── kontakt-page/        # Kontaktseite
-    │   └── not-found-page/      # 404-Seite
+    │   ├── sport-detail-page/
+    │   └── sportangebote-page/
     ├── services/
-    │   └── news.service.ts      # News-State, localStorage, Kommentare
-    ├── app.routes.ts            # Routing-Konfiguration (11 Routen)
-    └── app.config.ts            # Angular-Konfiguration
+    │   ├── news.service.ts
+    │   └── sports.service.ts
+    ├── app.config.ts
+    ├── app.html
+    ├── app.routes.ts
+    └── app.ts
 ```
 
-## Technologie-Stack
+Weitere wichtige Ordner:
 
-| Bereich | Technologie |
-|---------|-------------|
-| Framework | Angular 21 (Standalone Components) |
-| Sprache | TypeScript 5.9 (strict mode) |
-| State Management | Angular Signals (`signal`, `computed`) |
-| Persistenz | `localStorage` |
-| Tests | Vitest 4 + Angular TestBed |
-| Formatter | Prettier 3 |
+- `Bilder/`: Bilder für Verein, Sportangebote, Shop und News
+- `public/`: öffentliche statische Dateien
 
-## Architekturentscheidungen
+## Architektur
 
-- **Keine externen API-Calls:** Alle Daten liegen lokal (statische Arrays oder `localStorage`). Die Anwendung ist vollständig offline-fähig.
-- **Angular Signals:** Reaktiver State ohne NgRx – `computed()` für abgeleitete Werte, `toSignal()` für RxJS-Integration.
-- **Validierung am Data-Layer:** Produkte und gespeicherte Daten werden beim Laden validiert; fehlerhafte Einträge werden verworfen statt die App zum Absturz zu bringen.
-- **Presentational vs. Container Components:** `ShopFilterPanel` und `ShopProductGrid` haben keine eigene Logik – sie kommunizieren ausschließlich über `@Input`/`@Output`.
+### Angular
 
-## Farbschema
+Das Projekt nutzt Angular mit Standalone Components. Die zentrale Routen-Konfiguration liegt in `src/app/app.routes.ts`.
 
-Passend zum Vereinswappen wurden folgende Farben gewählt:
+Header und Footer sind globale Layout-Komponenten:
 
-- Primärfarbe: `#1e5631` (Dunkelgrün)
-- Akzentfarbe: `#c5a572` (Gold)
+- `src/app/layout/site-header/`
+- `src/app/layout/site-footer/`
 
-## Barrierefreiheit
+Seiten liegen unter `src/app/pages/`.
 
-- Skip-Link zu Beginn jeder Seite
-- Semantische HTML-Elemente (`<header>`, `<nav>`, `<main>`, `<article>`)
-- ARIA-Labels auf allen interaktiven Elementen
-- Fokusindikatoren für Tastaturnavigation
-- Live-Regions für dynamische Statusmeldungen
+### Data Layer
+
+Der Datenzugriff ist lokal und servicebasiert:
+
+- `NewsService`: Artikel, Kommentare, Redakteursfunktionen und `localStorage`
+- `SportsService`: validierter Zugriff auf Sportangebote
+- `shop.service.ts`: Produktdaten, Filterlogik und Produktvalidierung
+- `CartService`: Warenkorb-State, Mengenlogik und `localStorage`
+
+Komponenten sollen Daten möglichst über Services erhalten und nicht direkt aus Datenarrays lesen.
+
+### State
+
+Die Anwendung nutzt Angular Signals:
+
+- `signal()` für lokalen Zustand
+- `computed()` für abgeleitete Werte
+- `toSignal()` für Routenparameter aus Angular/RxJS
+
+Beispiele:
+
+- Warenkorbanzahl im Header
+- gefilterte Produkte im Shop
+- aktueller Sporteintrag auf der Detailseite
+- Formular- und Fehlerzustände im Newsbereich
+
+## Angular-Konzepte im Projekt
+
+### Standalone Components
+
+Die Seiten und UI-Bausteine sind als Standalone Components umgesetzt. Dadurch werden keine klassischen Angular-Module benötigt. Die wichtigsten Seiten liegen unter `src/app/pages/`, globale Layout-Bausteine unter `src/app/layout/`.
+
+### Services als Data Layer
+
+Datenlogik liegt möglichst in Services oder Data-Dateien:
+
+- `NewsService` verwaltet Artikel, Kommentare und lokale Speicherung.
+- `SportsService` stellt validierte Sportangebote bereit.
+- `shop.service.ts` enthält Produktvalidierung und Filterlogik.
+- `CartService` verwaltet Warenkorbzustand und Summen.
+
+### Routing
+
+Die Routen sind zentral in `src/app/app.routes.ts` definiert und werden in `src/app/app.config.ts` mit Hash-Routing registriert. Detailseiten wie `/#/news/:slug` und `/#/sportangebote/:sportId` lesen Daten anhand der URL-Parameter.
+
+### Forms
+
+Für Eingaben werden Angular Forms und Reactive Forms genutzt, zum Beispiel im Redakteursmodus und bei Kommentaren. Pflichtfelder und ungültige Eingaben werden direkt in der UI angezeigt.
+
+### Signals und berechnete Werte
+
+Für lokalen Zustand werden Angular Signals verwendet. Abgeleitete Werte, zum Beispiel Warenkorbanzahl oder gefilterte Produktlisten, werden mit `computed()` berechnet.
+
+## Lokale Speicherung
+
+Die Anwendung speichert nur im Browser:
+
+- Warenkorb im `localStorage`
+- selbst erstellte Newsartikel im `localStorage`
+- Kommentare im `localStorage`
+
+Zum Zurücksetzen der lokalen Daten kann im Browser der `localStorage` für `localhost:4200` gelöscht werden.
+
+## Tests
+
+Tests liegen direkt neben den getesteten Bereichen, zum Beispiel:
+
+- `src/app/app.routes.spec.ts`
+- `src/app/services/news.service.spec.ts`
+- `src/app/services/sports.service.spec.ts`
+- `src/app/pages/shop-page/data/shop.service.spec.ts`
+- `src/app/pages/shop-page/data/cart.service.spec.ts`
+- `src/app/pages/news-one-page/news-one-page.spec.ts`
+- `src/app/pages/news-upload-page/news-upload-page.spec.ts`
+- `src/app/pages/sport-detail-page/sport-detail-page.spec.ts`
+
+Getestet werden unter anderem:
+
+- Routing
+- Newsvalidierung und Kommentare
+- Redakteursformular
+- Shopfilter und Produktvalidierung
+- Warenkorb-Logik
+- Sportdetailseiten und Fehlerzustände
+
+## Typische Einstiegspunkte für neue Entwickler
+
+Wenn du eine neue Seite hinzufügen möchtest:
+
+1. Component unter `src/app/pages/` anlegen.
+2. Route in `src/app/app.routes.ts` ergänzen.
+3. Navigation bei Bedarf in `src/app/layout/site-header/` erweitern.
+
+Wenn du neue Sportangebote ändern möchtest:
+
+1. Daten in `src/app/data/sports.data.ts` anpassen.
+2. Zugriff erfolgt automatisch über `SportsService`.
+3. Danach prüfen, ob die Detailseite unter `/#/sportangebote/:sportId` funktioniert.
+
+Wenn du Shopdaten ändern möchtest:
+
+1. Daten in `src/app/pages/shop-page/data/shop.data.ts` anpassen.
+2. Typen in `shop.models.ts` beachten.
+3. Validierung in `shop.service.ts` prüfen.
+4. Tests ausführen.
+
+Wenn du Newslogik ändern möchtest:
+
+1. Typen und Standardartikel in `src/app/models/article.ts` prüfen.
+2. Logik in `src/app/services/news.service.ts` anpassen.
+3. Betroffene Tests ausführen.
+
+## Code Scaffolding
+
+Angular CLI kann genutzt werden, um neue Dateien einheitlich anzulegen:
+
+```bash
+# Neue Page-Komponente
+ng generate component pages/example-page
+
+# Neue wiederverwendbare Komponente
+ng generate component pages/example-page/components/example-card
+
+# Neuer Service
+ng generate service services/example
+
+# Hilfe zu weiteren Generatoren
+ng generate --help
+```
+
+Vor dem Übernehmen neuer generierter Dateien bitte prüfen, ob die Benennung zur bestehenden Struktur passt.
+
+## Bekannte Hinweise
+
+- Der Redakteursmodus ist nur eine lokale Demo-Funktion und keine echte Authentifizierung.
+- Es gibt aktuell kein eigenes `lint`-Script.
+
+## Weiterführende Links
+
+- [Angular Dokumentation](https://angular.dev)
+- [Angular Standalone Components](https://angular.dev/guide/components)
+- [Angular Signals](https://angular.dev/guide/signals)
+- [Angular Router](https://angular.dev/guide/routing)
+- [Angular Forms](https://angular.dev/guide/forms)
+- [Vitest Dokumentation](https://vitest.dev)
 
 ## Autoren
 
 | Name | Matrikelnummer |
-|------|----------------|
+|---|---|
 | Peter Lang | 8613964 |
 | Janek Frank | 5607006 |
 | Lukas Reiser | 5527863 |
 | Tarek Kadu Turkmani | 1650970 |
 
-DHBW Heidenheim – Studiengang Wirtschaftsinformatik
+DHBW Heidenheim - Studiengang Wirtschaftsinformatik

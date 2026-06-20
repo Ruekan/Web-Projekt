@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, computed, inject, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SportsService } from '../../services/sports.service';
 import { FeeCalculator } from './components/fee-calculator/fee-calculator';
 import { MembershipBenefits } from './components/membership-benefits/membership-benefits';
@@ -29,12 +30,13 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class MitgliedschaftPage {
+  private readonly route = inject(ActivatedRoute);
   private readonly sportsService = inject(SportsService);
 
   protected readonly membershipPlans = MEMBERSHIP_PLANS;
   protected readonly sports = this.sportsService.getAll();
   protected readonly selectedPlanId = signal(DEFAULT_MEMBERSHIP_PLAN_ID);
-  protected readonly selectedSportId = signal('all');
+  protected readonly selectedSportId = signal(this.getInitialSportId());
   protected readonly feeSummary = computed(() => calculateMembershipFee(this.selectedPlanId()));
   protected readonly selectedPlan = computed(() => this.feeSummary().plan);
   protected readonly selectedSport = computed(() =>
@@ -53,5 +55,15 @@ export class MitgliedschaftPage {
 
   protected formatPrice(value: number): string {
     return formatMembershipPrice(value);
+  }
+
+  private getInitialSportId(): string {
+    const sportId = this.route.snapshot.queryParamMap.get('sport');
+
+    if (sportId && this.sports.some((sport) => sport.id === sportId)) {
+      return sportId;
+    }
+
+    return 'all';
   }
 }

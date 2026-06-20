@@ -11,6 +11,8 @@ export interface SportOffer {
   teaser: string;
   heroImage: string;
   heroAlt: string;
+  slideImage: string;
+  slideAlt: string;
   sections: SportSection[];
 }
 
@@ -22,6 +24,8 @@ export const SPORT_OFFERS: SportOffer[] = [
       'Fußball verbindet Leidenschaft, Teamgeist und taktisches Denken. Bei uns zählt jeder Lauf, jeder Pass und das gemeinsame Ziel.',
     heroImage: '/Bilder/Fuball1.png',
     heroAlt: 'Fußballmannschaft auf dem Spielfeld',
+    slideImage: '/Bilder/slideshow/fussball.png',
+    slideAlt: 'Fussballmannschaft des SV Ente Heidenheim',
     sections: [
       {
         title: 'Leidenschaft und Teamgeist',
@@ -53,6 +57,8 @@ export const SPORT_OFFERS: SportOffer[] = [
       'Handball steht für Tempo, Kraft und starke Entscheidungen. Unsere Teams verbinden Dynamik mit Fairness und echtem Zusammenhalt.',
     heroImage: '/Bilder/Handball.png',
     heroAlt: 'Handballspieler in dynamischer Aktion',
+    slideImage: '/Bilder/slideshow/handball.png',
+    slideAlt: 'Handballtraining beim SV Ente Heidenheim',
     sections: [
       {
         title: 'Kraft und Geschwindigkeit',
@@ -84,6 +90,8 @@ export const SPORT_OFFERS: SportOffer[] = [
       'Basketball bringt Tempo, Präzision und Teamrhythmus zusammen. Jeder Pass, jeder Wurf und jede Defense zählt.',
     heroImage: '/Bilder/Basketball.png',
     heroAlt: 'Basketballspieler beim Wurf',
+    slideImage: '/Bilder/slideshow/basketball.png',
+    slideAlt: 'Basketballtraining beim SV Ente Heidenheim',
     sections: [
       {
         title: 'Rhythmus und Zusammenspiel',
@@ -115,6 +123,8 @@ export const SPORT_OFFERS: SportOffer[] = [
       'Badminton kombiniert Schnelligkeit, Präzision und taktische Finesse. Ideal für alle, die Reaktion und Technik trainieren möchten.',
     heroImage: '/Bilder/Badminton.png',
     heroAlt: 'Badmintonspieler beim Schlag',
+    slideImage: '/Bilder/slideshow/badminton.png',
+    slideAlt: 'Badmintontraining beim SV Ente Heidenheim',
     sections: [
       {
         title: 'Schnelligkeit und Reaktion',
@@ -146,6 +156,8 @@ export const SPORT_OFFERS: SportOffer[] = [
       'Tennis verbindet Technik, Ausdauer und mentale Stärke. Ob Einzel oder Doppel: Jeder Punkt fordert volle Aufmerksamkeit.',
     heroImage: '/Bilder/Tennis.png',
     heroAlt: 'Tennisspieler auf dem Court',
+    slideImage: '/Bilder/slideshow/tennis.png',
+    slideAlt: 'Tennistraining beim SV Ente Heidenheim',
     sections: [
       {
         title: 'Technik und Präzision',
@@ -177,6 +189,8 @@ export const SPORT_OFFERS: SportOffer[] = [
       'Tischtennis ist schnell, präzise und taktisch. Perfekt für Reflexe, Konzentration und clevere Ballwechsel.',
     heroImage: '/Bilder/Tischtennis.png',
     heroAlt: 'Tischtennisspieler am Tisch',
+    slideImage: '/Bilder/slideshow/tischtennis.png',
+    slideAlt: 'Tischtennistraining beim SV Ente Heidenheim',
     sections: [
       {
         title: 'Reflexe und Tempo',

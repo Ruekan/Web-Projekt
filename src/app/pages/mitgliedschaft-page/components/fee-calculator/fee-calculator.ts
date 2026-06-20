@@ -5,6 +5,7 @@ import { MembershipPlan } from '../../data/membership.models';
 @Component({
   selector: 'app-fee-calculator',
   templateUrl: './fee-calculator.html',
+  styleUrl: './fee-calculator.css',
 })
 export class FeeCalculator {
   @Input() membershipPlans: readonly MembershipPlan[] = [];

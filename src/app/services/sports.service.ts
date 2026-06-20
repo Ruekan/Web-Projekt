@@ -46,6 +46,8 @@ function parseSportOffer(value: unknown): SportOffer | null {
   const teaser = parseText(value['teaser']);
   const heroImage = parseText(value['heroImage']);
   const heroAlt = parseText(value['heroAlt']);
+  const slideImage = parseText(value['slideImage']);
+  const slideAlt = parseText(value['slideAlt']);
   const sections: SportSection[] = [];
 
   for (const sectionValue of value['sections']) {
@@ -58,7 +60,7 @@ function parseSportOffer(value: unknown): SportOffer | null {
     sections.push(section);
   }
 
-  if (!id || !name || !teaser || !heroImage || !heroAlt) {
+  if (!id || !name || !teaser || !heroImage || !heroAlt || !slideImage || !slideAlt) {
     return null;
   }
 
@@ -68,6 +70,8 @@ function parseSportOffer(value: unknown): SportOffer | null {
     teaser,
     heroImage,
     heroAlt,
+    slideImage,
+    slideAlt,
     sections,
   };
 }

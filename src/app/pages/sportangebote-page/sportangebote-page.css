@@ -4,47 +4,163 @@
 
 .sportangebote-hero {
   position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(520px, 70vw, 780px);
   overflow: hidden;
-  padding: clamp(4rem, 9vw, 8rem) clamp(1.25rem, 6vw, 6rem);
+  background: #123520;
   color: #fff;
-  text-align: center;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(214, 182, 116, 0.35), transparent 22rem),
-    linear-gradient(135deg, #123520, #1e5631 52%, #2d5a41);
 }
 
-.sportangebote-hero::after {
-  content: '';
+.sportangebote-hero__image {
   position: absolute;
-  inset: auto -8rem -12rem auto;
-  width: 26rem;
-  height: 26rem;
-  border: 4rem solid rgba(214, 182, 116, 0.12);
-  border-radius: 50%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
 }
 
-.sportangebote-hero p {
+.sportangebote-hero__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(18, 53, 32, 0.92), rgba(18, 53, 32, 0.68) 48%, rgba(18, 53, 32, 0.24)),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.08));
+}
+
+.sportangebote-hero__content {
+  position: relative;
+  z-index: 1;
+  width: min(760px, calc(100% - 2rem));
+  margin-left: clamp(1rem, 7vw, 7rem);
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.sportangebote-hero__content p {
   color: #d6b674;
   font-weight: 900;
-  letter-spacing: 0.22em;
-  margin-bottom: 1rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
 }
 
-.sportangebote-hero h1 {
-  font-size: clamp(3rem, 9vw, 7rem);
-  line-height: 0.95;
-  margin-bottom: 1.25rem;
-  text-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+.sportangebote-hero__content span {
+  display: block;
+  color: #f6f1e7;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 800;
+  margin-bottom: 0.55rem;
 }
 
-.sportangebote-hero span {
+.sportangebote-hero__content h1 {
+  font-size: clamp(3.2rem, 9vw, 7rem);
+  line-height: 0.95;
+  margin-bottom: 1.15rem;
+  text-shadow: 0 18px 45px rgba(0, 0, 0, 0.36);
+}
+
+.sportangebote-hero__content strong {
   display: block;
-  max-width: 760px;
-  margin: 0 auto;
+  max-width: 680px;
   color: #f6f1e7;
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  font-weight: 600;
   line-height: 1.7;
+}
+
+.sportangebote-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+}
+
+.sportangebote-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.8rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.sportangebote-hero__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+}
+
+.sportangebote-hero__cta--primary {
+  background: #d6b674;
+  color: #123520;
+}
+
+.sportangebote-hero__cta--secondary {
+  border-color: rgba(246, 241, 231, 0.82);
+  background: rgba(18, 53, 32, 0.38);
+  color: #fff;
+}
+
+.sportangebote-hero__control {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(246, 241, 231, 0.45);
+  border-radius: 50%;
+  background: rgba(18, 53, 32, 0.58);
+  color: #fff;
+  cursor: pointer;
+  font-size: 2.35rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.sportangebote-hero__control:hover {
+  background: rgba(18, 53, 32, 0.86);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.sportangebote-hero__control--prev {
+  left: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.sportangebote-hero__control--next {
+  right: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.sportangebote-hero__dots {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1rem, 4vw, 3rem);
+  bottom: clamp(1rem, 4vw, 2rem);
+  display: flex;
+  gap: 0.55rem;
+}
+
+.sportangebote-hero__dots button {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid rgba(246, 241, 231, 0.75);
+  border-radius: 50%;
+  background: rgba(246, 241, 231, 0.35);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.sportangebote-hero__dots button.active,
+.sportangebote-hero__dots button:hover {
+  background: #d6b674;
+  transform: scale(1.18);
 }
 
 .sport-grid {
@@ -161,8 +277,90 @@
   box-shadow: 0 12px 24px rgba(30, 86, 49, 0.25);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
+  .sportangebote-hero {
+    align-items: flex-end;
+    min-height: 560px;
+  }
+
+  .sportangebote-hero__shade {
+    background:
+      linear-gradient(0deg, rgba(18, 53, 32, 0.94), rgba(18, 53, 32, 0.64) 58%, rgba(18, 53, 32, 0.28)),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.04));
+  }
+
+  .sportangebote-hero__content {
+    width: calc(100% - 2rem);
+    margin: 0 auto;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .sportangebote-hero__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sportangebote-hero__cta {
+    width: 100%;
+  }
+
+  .sportangebote-hero__control {
+    top: auto;
+    bottom: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    transform: none;
+  }
+
+  .sportangebote-hero__control:hover {
+    transform: scale(1.05);
+  }
+
+  .sportangebote-hero__dots {
+    right: 50%;
+    bottom: 1.85rem;
+    transform: translateX(50%);
+  }
+
   .sport-card img {
     height: 205px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sportangebote-hero {
+    min-height: 520px;
+  }
+
+  .sportangebote-hero__content {
+    padding: 3.5rem 0 4.25rem;
+  }
+
+  .sportangebote-hero__content p {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+  }
+
+  .sportangebote-hero__content span {
+    font-size: 1rem;
+  }
+
+  .sportangebote-hero__content h1 {
+    font-size: clamp(2.35rem, 15vw, 3.4rem);
+  }
+
+  .sportangebote-hero__content strong {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .sportangebote-hero__control {
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 2rem;
+  }
+
+  .sportangebote-hero__dots {
+    bottom: 1.7rem;
   }
 }

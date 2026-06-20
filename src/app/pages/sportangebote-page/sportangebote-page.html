@@ -1,9 +1,47 @@
 <main id="main-content" class="sportangebote-page">
-  <section class="sportangebote-hero" aria-labelledby="sportangebote-title">
-    <p>SV Ente Heidenheim</p>
-    <h1 id="sportangebote-title">Unsere Sportangebote</h1>
-    <span>Sechs Sportarten, ein Verein: Bewegung, Gemeinschaft und Spaß für jedes Niveau.</span>
-  </section>
+  @if (activeSport(); as featuredSport) {
+    <section class="sportangebote-hero" aria-labelledby="sportangebote-title">
+      <img class="sportangebote-hero__image" [src]="featuredSport.slideImage" [alt]="featuredSport.slideAlt">
+      <div class="sportangebote-hero__shade"></div>
+
+      <div class="sportangebote-hero__content">
+        <p>SV Ente Heidenheim</p>
+        <span>Unsere Sportangebote</span>
+        <h1 id="sportangebote-title">{{ featuredSport.name }}</h1>
+        <strong>{{ featuredSport.teaser }}</strong>
+
+        <div class="sportangebote-hero__actions">
+          <a routerLink="/mitgliedschaft" [queryParams]="{ sport: featuredSport.id }" class="sportangebote-hero__cta sportangebote-hero__cta--primary">
+            Mitglied werden
+          </a>
+          <a [routerLink]="['/sportangebote', featuredSport.id]" class="sportangebote-hero__cta sportangebote-hero__cta--secondary">
+            Mehr erfahren
+          </a>
+        </div>
+      </div>
+
+      @if (sports.length > 1) {
+        <button type="button" class="sportangebote-hero__control sportangebote-hero__control--prev" (click)="showPreviousSlide()" aria-label="Vorheriges Sportangebot anzeigen">
+          &lsaquo;
+        </button>
+        <button type="button" class="sportangebote-hero__control sportangebote-hero__control--next" (click)="showNextSlide()" aria-label="Naechstes Sportangebot anzeigen">
+          &rsaquo;
+        </button>
+
+        <div class="sportangebote-hero__dots" aria-label="Sportangebot auswaehlen">
+          @for (sport of sports; track sport.id; let index = $index) {
+            <button
+              type="button"
+              [class.active]="index === activeSlideIndex()"
+              (click)="showSlide(index)"
+              [attr.aria-label]="sport.name + ' anzeigen'"
+              [attr.aria-current]="index === activeSlideIndex() ? 'true' : null">
+            </button>
+          }
+        </div>
+      }
+    </section>
+  }
 
   @if (isLoading()) {
     <div class="sport-state" role="status" aria-live="polite">

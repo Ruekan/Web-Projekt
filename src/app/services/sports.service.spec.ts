@@ -26,6 +26,8 @@ describe('SportsService', () => {
         teaser: ' Training ',
         heroImage: '/Bilder/Tennis.png',
         heroAlt: 'Tennisplatz',
+        slideImage: '/Bilder/slideshow/tennis.png',
+        slideAlt: 'Tennistraining',
         sections: [
           {
             title: 'Training',
@@ -41,6 +43,8 @@ describe('SportsService', () => {
         teaser: 'Duplikat',
         heroImage: '/Bilder/Tennis.png',
         heroAlt: 'Tennisplatz',
+        slideImage: '/Bilder/slideshow/tennis.png',
+        slideAlt: 'Tennistraining',
         sections: [],
       },
       {
@@ -49,6 +53,8 @@ describe('SportsService', () => {
         teaser: 'ungueltig',
         heroImage: '/Bilder/Tennis.png',
         heroAlt: 'Tennisplatz',
+        slideImage: '/Bilder/slideshow/tennis.png',
+        slideAlt: 'Tennistraining',
         sections: [],
       },
     ]);

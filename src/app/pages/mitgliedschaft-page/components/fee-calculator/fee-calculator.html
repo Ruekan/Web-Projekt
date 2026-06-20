@@ -10,7 +10,7 @@
       <label for="membership-plan">Mitgliedschaftstyp</label>
       <select id="membership-plan" [value]="selectedPlanId" (change)="onPlanChanged($event)">
         @for (plan of membershipPlans; track plan.id) {
-          <option [value]="plan.id">{{ plan.name }} - {{ plan.description }}</option>
+          <option [value]="plan.id">{{ plan.name }}</option>
         }
       </select>
 

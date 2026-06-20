@@ -2,51 +2,109 @@
 /* =================================================
    10. CONTACT PAGE STYLES (from style.css)
    ================================================= */
+article.artikel {
+    max-width: 1120px;
+}
+
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
     align-items: start;
 }
 
-.contact-info {
+.contact-info,
+.contact-form {
+    min-width: 0;
     background: #fff;
-    padding: 1.5rem;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
     border-radius: 8px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    overflow-wrap: anywhere;
 }
 
-.contact-form {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+.contact-info h3,
+.contact-form h3,
+.map-wrapper h3 {
+    color: #1e5631;
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    color: #2d5a41;
+    margin-bottom: 1.2rem;
+}
+
+.contact-info p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-info a {
+    color: #1e5631;
+    font-weight: 700;
 }
 
 .contact-form form {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.85rem;
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
+    display: block;
     width: 100%;
-    padding: 0.6rem 0.8rem;
+    min-width: 0;
+    padding: 0.8rem 0.9rem;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 1rem;
+    font-family: inherit;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"] {
+    min-height: 46px;
+}
+
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
 }
 
 .contact-form label {
     font-weight: 600;
+    color: #2d5a41;
+}
+
+.contact-form .btn {
+    justify-self: start;
+    cursor: pointer;
+    font: inherit;
+}
+
+.contact-form .btn::before {
+    display: none;
 }
 
 /* Map styles */
 .map-wrapper {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 2rem;
+    max-width: none;
+    margin: 2rem 0 0;
+    padding: 0;
+}
+
+.osm-embed {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.osm-embed iframe {
+    display: block;
+    width: 100%;
+    height: clamp(260px, 42vw, 350px);
+    border: 0;
 }
 
 #map {
@@ -54,4 +112,40 @@
     height: 350px;
     border-radius: 8px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    article.artikel {
+        padding: 0.9rem;
+    }
+
+    .contact-grid {
+        gap: 1rem;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .contact-form form {
+        gap: 0.75rem;
+    }
+
+    .contact-form .btn {
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 0.9rem 1rem;
+        text-align: center;
+    }
+
+    .map-wrapper {
+        margin-top: 1.5rem;
+    }
 }

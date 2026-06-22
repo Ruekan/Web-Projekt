@@ -62,8 +62,6 @@ Tests im Watch-Modus:
 npm test
 ```
 
-Aktuell gibt es kein eigenes `lint`-Script.
-
 ## Tech Stack
 
 | Bereich | Technologie |

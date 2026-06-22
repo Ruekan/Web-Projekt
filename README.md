@@ -186,7 +186,8 @@ src/
 
 Weitere wichtige Ordner:
 
-- `Bilder/`: Bilder für Verein, Sportangebote, Shop und News
+- `public/Bilder/`: Bilder für Verein, Sportangebote, Shop und News
+- `public/Bilder/slideshow/`: Slideshow-Bilder für die Sportangebote
 - `public/`: öffentliche statische Dateien
 
 ## Architektur

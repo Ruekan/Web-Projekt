@@ -38,6 +38,16 @@ export function parseStoredComments(rawValue: string | null): Comment[] {
   }
 }
 
+export function createClientId(prefix: string): string {
+  const uuid = globalThis.crypto?.randomUUID?.();
+
+  if (uuid) {
+    return uuid;
+  }
+
+  return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
 export function isArticle(value: unknown): value is Article {
   if (!isRecord(value)) return false;
 
@@ -131,7 +141,7 @@ export class NewsService {
 
   addComment(slug: string, author: string, text: string): void {
     const newComment: Comment = {
-      id: crypto.randomUUID(),
+      id: createClientId('comment'),
       articleSlug: slug,
       author,
       text,
@@ -153,7 +163,7 @@ export class NewsService {
     const newArticle: Article = {
       ...article,
       slug,
-      id: crypto.randomUUID(),
+      id: createClientId('article'),
     };
     const updated = [newArticle, ...this._articles()];
     this._articles.set(updated);

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Article, Comment, DEFAULT_ARTICLES } from '../models/article';
-import { isArticle, isComment, parseStoredArticles, parseStoredComments } from './news.service';
+import { createClientId, isArticle, isComment, parseStoredArticles, parseStoredComments } from './news.service';
 
 const VALID_ARTICLE: Article = {
   id: 'article-1',
@@ -45,6 +45,13 @@ describe('news.service validation helpers', () => {
     expect(result).toEqual([VALID_ARTICLE]);
     expect(isArticle(result[0])).toBe(true);
     expect(result[0]?.content).toBe('<p>Bestehender HTML-Inhalt bleibt erlaubt.</p>');
+  });
+
+  it('erstellt lokale IDs fuer neue Inhalte', () => {
+    const id = createClientId('article');
+
+    expect(id).toBeTruthy();
+    expect(typeof id).toBe('string');
   });
 
   it('liefert eine leere Kommentar-Liste für ungültige JSON-Daten', () => {

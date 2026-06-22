@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { SportOffer } from '../../../../data/sports.data';
 import { MembershipPlan } from '../../data/membership.models';
 
 @Component({
   selector: 'app-fee-calculator',
+  imports: [FormsModule],
   templateUrl: './fee-calculator.html',
   styleUrl: './fee-calculator.css',
 })
@@ -20,15 +22,11 @@ export class FeeCalculator {
   @Output() planChanged = new EventEmitter<string>();
   @Output() sportChanged = new EventEmitter<string>();
 
-  protected onPlanChanged(event: Event): void {
-    this.planChanged.emit(readSelectValue(event));
+  protected onPlanChanged(planId: string): void {
+    this.planChanged.emit(planId);
   }
 
-  protected onSportChanged(event: Event): void {
-    this.sportChanged.emit(readSelectValue(event));
+  protected onSportChanged(sportId: string): void {
+    this.sportChanged.emit(sportId);
   }
-}
-
-function readSelectValue(event: Event): string {
-  return event.target instanceof HTMLSelectElement ? event.target.value : '';
 }

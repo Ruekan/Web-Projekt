@@ -8,14 +8,14 @@
   <div class="fee-calculator__panel">
     <div class="fee-calculator__form" aria-label="Auswahl für Beitragsrechnung">
       <label for="membership-plan">Mitgliedschaftstyp</label>
-      <select id="membership-plan" [value]="selectedPlanId" (change)="onPlanChanged($event)">
+      <select id="membership-plan" [ngModel]="selectedPlanId" (ngModelChange)="onPlanChanged($event)">
         @for (plan of membershipPlans; track plan.id) {
           <option [value]="plan.id">{{ plan.name }}</option>
         }
       </select>
 
       <label for="membership-sport">Sportart</label>
-      <select id="membership-sport" [value]="selectedSportId" (change)="onSportChanged($event)">
+      <select id="membership-sport" [ngModel]="selectedSportId" (ngModelChange)="onSportChanged($event)">
         <option value="all">Alle Sportangebote</option>
         @for (sport of sports; track sport.id) {
           <option [value]="sport.id">{{ sport.name }}</option>

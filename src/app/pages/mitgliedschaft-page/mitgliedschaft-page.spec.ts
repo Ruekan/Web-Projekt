@@ -17,7 +17,9 @@ describe('MitgliedschaftPage', () => {
 
   it('zeigt den initialen Beitrag fuer Erwachsene', async () => {
     const fixture = await setup();
+    const planSelect = fixture.nativeElement.querySelector('#membership-plan') as HTMLSelectElement;
 
+    expect(planSelect.value).toBe('erwachsene');
     expect(fixture.nativeElement.textContent).toContain('Erwachsene');
     expect(fixture.nativeElement.textContent).toContain('24,00');
     expect(fixture.nativeElement.textContent).toContain('288,00');

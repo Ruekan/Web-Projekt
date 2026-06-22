@@ -338,7 +338,6 @@ Vor dem Übernehmen neuer generierter Dateien bitte prüfen, ob die Benennung zu
 ## Bekannte Hinweise
 
 - Der Redakteursmodus ist nur eine lokale Demo-Funktion und keine echte Authentifizierung.
-- Es gibt aktuell kein eigenes `lint`-Script.
 
 ## Weiterführende Links
 
